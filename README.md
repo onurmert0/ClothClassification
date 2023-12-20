@@ -16,3 +16,9 @@ https://www.geeksforgeeks.org/clustering-in-machine-learning/
 [1] Cushen, G. A., & Nixon, M. S. (2012, July). Real-time semantic clothing segmentation. In International Symposium on Visual Computing (pp. 272-281). Berlin, Heidelberg: Springer Berlin Heidelberg.
 
 Week 3: Looking for method and resized the images, normalization and augmentation.
+
+Week 4: We prepared the segmentation code.
+
+Week 5: We fixed the segmentation code, it wasn't working successfully.
+
+Week 6: We prepared the code for clustering and tried to fix the problems.
