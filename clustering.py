@@ -5,7 +5,7 @@ from sklearn.cluster import KMeans
 
 def load_images(folder_path):
     images = []
-    valid_extensions = ['.png', '.jpg', '.jpeg']  # Geçerli dosya uzantıları
+    valid_extensions = ['.png', '.jpg', '.jpeg']
 
     for filename in os.listdir(folder_path):
         _, extension = os.path.splitext(filename)
@@ -17,7 +17,6 @@ def load_images(folder_path):
     return images
 
 def extract_color_features(image):
-    # Resmin renk histogramını çıkar
     hist = cv2.calcHist([image], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
     hist = hist.flatten()
 
@@ -26,11 +25,9 @@ def extract_color_features(image):
 def cluster_images(images, num_clusters):
     data = np.array([extract_color_features(image) for image in images])
 
-    # KMeans kümeleme
-    kmeans = KMeans(n_clusters=num_clusters)
+    kmeans = KMeans(n_clusters=num_clusters, n_init=10)
     kmeans.fit(data)
 
-    # Küme etiketlerini al
     labels = kmeans.labels_
 
     clustered_images = {}
@@ -51,13 +48,11 @@ def save_clustered_images(clustered_images, output_folder):
 if __name__ == "__main__":
     input_folder = 'imagesoutput'
     output_folder = 'clustered_images'
-    num_clusters = 5 # Dilerseniz bu sayıyı değiştirebilirsiniz
+    num_clusters = 5
 
-    # Resimleri yükle
     images = load_images(input_folder)
 
-    # Resimleri kümele
     clustered_images = cluster_images(images, num_clusters)
+    
 
-    # Kümelere ayrılan resimleri kaydet
     save_clustered_images(clustered_images, output_folder)
